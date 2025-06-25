@@ -1,0 +1,7 @@
+# Docker
+*.log
+docker-compose.override.yml
+
+# OS / Geral
+.DS_Store
+Thumbs.db
