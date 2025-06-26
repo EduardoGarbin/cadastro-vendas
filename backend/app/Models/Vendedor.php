@@ -10,10 +10,7 @@ class Vendedor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'nome',
-        'email',
-    ];
+    protected $fillable = ['nome', 'email'];
 
     public function vendas()
     {
