@@ -11,6 +11,7 @@ services:
       - mysql
     networks:
       - app-network
+    user: "${UID}:${GID}"
 
   frontend:
     build:

@@ -1,27 +1,12 @@
+# UID/GID
+UID := $(shell id -u)
+GID := $(shell id -g)
+export UID
+export GID
+
 # Variáveis
-ARTISAN=docker exec -it laravel-app php artisan
 COMPOSER=docker exec -it laravel-app composer
 NPM=docker exec -it vue-app npm
-
-
-# Laravel
-artisan:
-	docker exec -it laravel-app php artisan $(filter-out $@,$(MAKECMDGOALS))
-	
-migrate:
-	$(ARTISAN) migrate
-
-seed:
-	$(ARTISAN) db:seed
-
-migrate-refresh:
-	$(ARTISAN) migrate:fresh --seed
-
-tinker:
-	$(ARTISAN) tinker
-
-routes:
-	$(ARTISAN) route:list
 
 # Composer
 composer-install:
@@ -39,7 +24,7 @@ up:
 	docker-compose up -d
 
 build:
-	docker-compose build
+	docker-compose build --no-cache
 
 down:
 	docker-compose down
