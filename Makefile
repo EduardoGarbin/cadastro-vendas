@@ -31,3 +31,6 @@ down:
 
 restart:
 	docker-compose down && docker-compose up -d --build
+
+restart-frontend:
+	docker-compose down frontend && docker-compose up -d --build frontend

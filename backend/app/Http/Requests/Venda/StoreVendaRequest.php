@@ -28,6 +28,8 @@ class StoreVendaRequest extends FormRequest
             'vendedor_id.required' => 'O vendedor é obrigatório.',
             'vendedor_id.exists' => 'Vendedor não encontrado.',
             'valor.required' => 'O valor da venda é obrigatório.',
+            'valor.numeric' => 'O valor da venda deve ser numérico.',
+            'valor.min' => 'O valor da venda deve ser no mínimo R$ 0,01.',
             'data.required' => 'A data é obrigatória.',
             'data.date' => 'A data deve estar em formato válido.',
         ];
