@@ -2,7 +2,7 @@
     <div class="vendas-vendedor-page">
         <button @click="voltar" class="voltar-btn">← Voltar</button>
 
-        <div class="acoes">
+        <div class="acoes" v-if="vendas.length">
             <h2>Vendas de {{ vendedor?.nome }}</h2>
             <button @click="reenviarEmail" class="reenviar-btn">Reenviar e-mail de comissão</button>
         </div>
