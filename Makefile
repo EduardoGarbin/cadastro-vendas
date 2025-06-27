@@ -7,6 +7,7 @@ export GID
 # Variáveis
 COMPOSER=docker exec -it laravel-app composer
 NPM=docker exec -it vue-app npm
+ARTISAN=docker exec -it laravel-app php artisan
 
 # Composer
 composer-install:
@@ -21,16 +22,22 @@ npm-dev:
 
 # Docker
 up:
-	docker-compose up -d
+	docker compose up -d
 
 build:
-	docker-compose build --no-cache
+	docker compose build --no-cache
 
 down:
-	docker-compose down
+	docker compose down
 
 restart:
-	docker-compose down && docker-compose up -d --build
+	docker compose down && docker-compose up -d --build
 
 restart-frontend:
-	docker-compose down frontend && docker-compose up -d --build frontend
+	docker compose down frontend && docker-compose up -d --build frontend
+	
+db-seed:
+	$(ARTISAN) db-seed
+
+migration-up-all:
+	$(ARTISAN) migrate

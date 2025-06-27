@@ -37,7 +37,7 @@ class EnviarResumoVendasDiario extends Command
 
         $valorTotal = $vendas->sum('valor');
 
-        Mail::to(config('app.admin_email', 'admin@sistema.com'))->send(
+        Mail::to(config('app.default_user_email'))->send(
             new ResumoVendasAdminMail($valorTotal)
         );
     }
