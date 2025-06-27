@@ -31,10 +31,10 @@ down:
 	docker compose down
 
 restart:
-	docker compose down && docker-compose up -d --build
+	docker compose down && docker compose up -d --build
 
 restart-frontend:
-	docker compose down frontend && docker-compose up -d --build frontend
+	docker compose down frontend && docker compose up -d --build frontend
 	
 db-seed:
 	$(ARTISAN) db-seed
