@@ -1,7 +1,7 @@
 ````
 # Projeto de Cadastro de Vendas
 
-Este projeto é um sistema web para cadastro de vendas, desenvolvido com uma arquitetura desacoplada, utilizando Laravel para o backend e Vue.js para o frontend. Todo o ambiente de desenvolvimento é orquestrado com Docker e Docker Compose.
+Este projeto é um sistema web para cadastro de vendas, desenvolvido com uma arquitetura desacoplada. Ele utiliza Laravel para o backend e Vue.js para o frontend. Todo o ambiente de desenvolvimento é orquestrado com Docker e Docker Compose.
 
 ## Pré-requisitos
 
