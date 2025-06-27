@@ -1,0 +1,41 @@
+:root {
+  --primary: #4f46e5;
+  --background: #f9fafb;
+  --card-bg: #ffffff;
+  --text-color: #1f2937;
+  --border-color: #e5e7eb;
+  --radius: 8px;
+  --font: "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+input,
+button {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+button {
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #4338ca;
+}
