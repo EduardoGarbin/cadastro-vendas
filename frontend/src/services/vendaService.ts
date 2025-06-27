@@ -26,11 +26,25 @@ export const criarVenda = async (dados: {
 
 export const listarVendasPorVendedor = async (vendedorId: number): Promise<Venda[]> => {
     const token = localStorage.getItem('token')
-    const response = await axios.get(`http://localhost:8080/api/vendas/vendedor/${vendedorId}`, {
+    const response = await axios.get(`http://localhost:8080/api/vendedores/${vendedorId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
     return response.data.data
 }
+
+export const reenviarComissaoPorVendedor = async (id: number): Promise<void> => {
+    const token = localStorage.getItem('token');
+    const response = await axios.post(
+        `http://localhost:8080/api/vendedores/${id}/reenviar-email`,
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    return response.data;
+};
 

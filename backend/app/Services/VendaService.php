@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Mail\ResumoVendasAdminMail;
 use App\Models\Venda;
+use App\Models\Vendedor;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
 
 class VendaService
 {
@@ -25,5 +28,24 @@ class VendaService
     public function calcularComissao(Venda $venda): float
     {
         return $venda->valor * 0.085;
+    }
+
+    public function reenviarEmailResumoVendedor($vendedorId)
+    {
+        $hoje = now()->toDateString();
+
+        $vendedor = Vendedor::find($vendedorId);
+
+        if (!$vendedor) {
+            throw new \RuntimeException('Vendedor não encontrado.');
+        }
+
+        $vendas = Venda::with('vendedor')->whereDate('data', $hoje)->get();
+
+        $valorTotal = $vendas->sum('valor');
+
+        Mail::to(config('app.admin_email', $vendedor->email))->send(
+            new ResumoVendasAdminMail($valorTotal)
+        );
     }
 }

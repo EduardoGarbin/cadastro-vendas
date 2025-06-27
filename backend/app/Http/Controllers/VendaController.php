@@ -14,6 +14,10 @@ class VendaController extends Controller
     {
         $vendas = $this->vendaService->listarTodas();
 
+        foreach ($vendas as $venda) {
+            $venda->comissao = $this->vendaService->calcularComissao($venda);
+        }
+
         return response()->json([
             'status' => 'success',
             'mensagem' => $vendas->isEmpty()
@@ -39,6 +43,10 @@ class VendaController extends Controller
     {
         $vendas = $this->vendaService->listarPorVendedor($id);
 
+        foreach ($vendas as $venda) {
+            $venda->comissao = $this->vendaService->calcularComissao($venda);
+        }
+
         return response()->json([
             'status' => 'success',
             'mensagem' => $vendas->isEmpty()
@@ -46,5 +54,27 @@ class VendaController extends Controller
                 : 'Vendas do vendedor retornadas com sucesso.',
             'data' => VendaResource::collection($vendas),
         ]);
+    }
+
+    public function reenviarEmailComissao($id)
+    {
+        try {
+            $this->vendaService->reenviarEmailResumoVendedor($id);
+
+            return response()->json([
+                'status' => 'success',
+                'mensagem' => 'Resumo de comissão reenviado com sucesso.'
+            ]);
+        } catch (\RuntimeException $e) {
+            return response()->json([
+                'status' => 'error',
+                'mensagem' => $e->getMessage()
+            ], 404);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => 'error',
+                'mensagem' => 'Erro inesperado ao reenviar o e-mail.'
+            ], 500);
+        }
     }
 }
